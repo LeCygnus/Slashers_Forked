@@ -2,6 +2,7 @@ SWEP.Base = "tfa_nmrih_base"
 SWEP.Category = "TFA NMRIH"
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
+SWEP.Instructions = "Stuns killer between 4 to 9 seconds. Stun won't stack on an already stunned killer."
 
 SWEP.Slot = 1
 
@@ -35,7 +36,7 @@ SWEP.Revolver = true
 
 SWEP.DisableChambering = true
 SWEP.Primary.ClipSize = 6
-SWEP.Primary.DefaultClip = 6
+SWEP.Primary.DefaultClip = 12
 
 SWEP.Primary.Sound = "Weapon_686.Single"
 SWEP.Primary.Ammo = "357"
@@ -101,7 +102,7 @@ if SERVER then
 			dmg:GetAttacker():GetActiveWeapon():GetClass() != "stun_gun" then return end
 		if target:Team() == TEAM_SURVIVORS then return true end
 		if target:Team() == TEAM_KILLER && !target.stun then
-			timer.Create("stungun_" .. target:UniqueID(), math.random(2, 4), 1, function()
+			timer.Create("stungun_" .. target:UniqueID(), math.random(4, 9), 1, function()
 				if !IsValid(target) then return end
 				if target:Alive() then 
 					target:SetRunSpeed(target.stungun_runspeed)

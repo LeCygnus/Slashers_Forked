@@ -1,4 +1,4 @@
-"slashers"
+"slashers_forked"
 {
 	"base"		"base"
 	"title"		"Slashers"

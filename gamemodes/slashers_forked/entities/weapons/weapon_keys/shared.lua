@@ -48,7 +48,7 @@ SWEP.CloseTime = 1
 
 function SWEP:Initialize()
     self:SetWeaponHoldType("normal")
-	self.KeysLeft = 3
+	self.KeysLeft = 4
 
 end
 
@@ -86,7 +86,7 @@ function SWEP:PrimaryAttack()
         self.CloseTime = 1
         net.Start("Close_time")
         net.WriteEntity(self)
-        net.WriteUInt(self.CloseTime, 5)
+        net.WriteUInt(self.CloseTime, 1)
         net.Send(self.Owner)
         self.EndPick = CurTime() + self.CloseTime
     end
@@ -119,7 +119,7 @@ end
 
 function SWEP:AddKeys()
 	PlayerEnt = LocalPlayer()
-  if GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber >= 3 then return end
+  if GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber >= 4 then return end
   GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber + 1
 end
 
@@ -154,7 +154,7 @@ function SWEP:Succeed()
 			trace.Entity:Fire("Unlock", "", .0)
 			trace.Entity:Fire("setanimation", "Unlock", .0)
 			trace.Entity:SetNWBool( "LockedByUser", false )
-      if self.KeysLeft < 3 then   
+      if self.KeysLeft < 4 then   
 			     self.KeysLeft = self.KeysLeft + 1
       end
 			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft
@@ -234,7 +234,7 @@ function SWEP:SecondaryAttack()
 	if e:GetModel() ~= "models/props_doors/doormain_rural01_small.mdl" and e:GetModel() ~= "models/props_doors/doormainmetal01.mdl" then return end
     if not IsValid(e) or trace.HitPos:Distance(self.Owner:GetShootPos()) > 100 or trace.Entity:GetClass() ~= "prop_door_rotating"  then return end
     if not trace.Entity:GetNWBool("LockedByUser" , false )then
-		if self.KeysLeft >= 3 then
+		if self.KeysLeft >= 4 then
 			self:PrimaryAttack()
 		else
 			return
@@ -247,7 +247,7 @@ function SWEP:SecondaryAttack()
         self.CloseTime = 1
         net.Start("Close_time")
         net.WriteEntity(self)
-        net.WriteUInt(self.CloseTime, 5)
+        net.WriteUInt(self.CloseTime, 1)
         net.Send(self.Owner)
         self.EndPick = CurTime() + self.CloseTime
 

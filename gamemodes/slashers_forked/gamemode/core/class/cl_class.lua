@@ -52,7 +52,7 @@ local function HUDPaint()
 		DrawHUDSurvivor()
 		if LocalPlayer().ClassID == CLASS_SURV_BLACK then
 			if FIRST then
-				GM.CLASS.Survivors[LocalPlayer().ClassID].keysNumber = 3
+				GM.CLASS.Survivors[LocalPlayer().ClassID].keysNumber = 4
 				FIRST = false
 			end
 			DrawHUDBlack(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].keysNumber)

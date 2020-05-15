@@ -209,7 +209,7 @@ end
 function GM.ROUND:UpdateEndTime(endtime)
 	GM.ROUND.EndTime = endtime
 	net.Start("sls_round_UpdateEndTime")
-		net.WriteInt(GM.ROUND.EndTime, 16)
+		net.WriteInt(GM.ROUND.EndTime, 5)
 	net.Broadcast()
 end
 
@@ -229,8 +229,8 @@ function GM:PlayerSpawn(ply)
 		-- Send data
 		if GM.ROUND.Active then
 			net.Start("sls_round_PlayerConnect")
-				net.WriteInt(GM.ROUND.Count, 16)
-				net.WriteInt(GM.ROUND.EndTime, 16)
+				net.WriteInt(GM.ROUND.Count, 10)
+				net.WriteInt(GM.ROUND.EndTime, 5)
 				net.WriteTable(GM.ROUND.Survivors)
 				net.WriteEntity(GM.ROUND.Killer)
 				net.WriteBool(GM.ROUND.WaitingPlayers)
